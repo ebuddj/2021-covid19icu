@@ -60,7 +60,7 @@ class App extends Component {
             borderWidth:4,
             data:[],
             fill:false,
-            label:'Stringency index',
+            label:'Vaccines doses (%)',
             pointRadius:0,
             type:'line',
             yAxisID:'left'
@@ -70,7 +70,7 @@ class App extends Component {
             borderWidth:4,
             data:[],
             fill:false,
-            label:'Number of cases',
+            label:'ICU patients',
             pointRadius:0,
             type:'line',
             yAxisID:'right'
@@ -114,15 +114,13 @@ class App extends Component {
                 fontColor:'#1b4098',
                 fontSize:14,
                 fontStyle:'bold',
-                labelString:'Number of cases'
+                labelString:'Vaccines doses (%)'
               },
               // https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#axis-range-settings
               ticks: {
                 fontColor:'#1b4098',
                 fontSize:16,
-                fontStyle:'bold',
-                suggestedMax:160,
-                suggestedMin:0
+                fontStyle:'bold'
               }
             },{
               id:'left',
@@ -136,7 +134,7 @@ class App extends Component {
                 display:true,
                 fontSize:14,
                 fontStyle:'bold',
-                labelString:'Stringency index'
+                labelString:'ICU patients'
               },
               // https://www.chartjs.org/docs/latest/axes/cartesian/linear.html#axis-range-settings
               ticks: {
@@ -145,9 +143,7 @@ class App extends Component {
                 },
                 fontColor:'#ff9900',
                 fontSize:16,
-                fontStyle:'bold',
-                suggestedMax:100,
-                suggestedMin:0,
+                fontStyle:'bold'
               }
             }]
           },
@@ -165,7 +161,7 @@ class App extends Component {
   changeCountry() {
     let current_country = this.state.countries.shift();
     chart.data.datasets[0].data = this.state.data[current_country].icu_patients_per_million;
-    chart.data.datasets[1].data = this.state.data[current_country].new_cases_smoothed;
+    chart.data.datasets[1].data = this.state.data[current_country].total_vaccinations_per_hundred;
     chart.data.labels = this.state.data[current_country].date;
     chart.update(0);
 
@@ -176,7 +172,7 @@ class App extends Component {
     interval = setInterval(() => {
       let current_country = this.state.countries.shift();
       chart.data.datasets[0].data = this.state.data[current_country].icu_patients_per_million;
-      chart.data.datasets[1].data = this.state.data[current_country].new_cases_smoothed;
+      chart.data.datasets[1].data = this.state.data[current_country].total_vaccinations_per_hundred;
       chart.data.labels = this.state.data[current_country].date;
       chart.update(0);
 

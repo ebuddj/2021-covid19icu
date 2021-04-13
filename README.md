@@ -2,18 +2,12 @@
 
 **Live demo** https://ebuddj.github.io/2021-covid19icu/
 
-## Covid-19 actions versus confirmed cases (EBU)
+## Covid-19 actions versus ICU patients (EBU)
 
-The graph shows the Covid-19 stringency index and confirmed cases for European countries. The Stringency Index is defined [here](https://ourworldindata.org/covid-government-stringency-index). The data comes from Our World in Data. 
+The graph shows the ICU patients due Covid-19 and administered vaccine doses for European countries. ICU stands for intensive care unit. The definition of unitensive care unit may differ from country to country. The vaccine data is counted as a single dose, and may not equal the total number of people vaccinated, depending on the specific dose regime (e.g. people receive multiple doses).The data comes from Our World in Data. 
 
 **ERNO area** 
 * https://ebuddj.github.io/2021-covid19icu/#area=erno
-
-Stringency Index is missing data for following countries:
-* Liechtenstein
-* Montenegro
-* North Macedonia
-* Holy See
 
 **Sources**
 * [Our World in Data](https://ourworldindata.org/coronavirus)

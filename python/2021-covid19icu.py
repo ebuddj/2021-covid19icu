@@ -41,7 +41,7 @@ url ='https://covid.ourworldindata.org/data/owid-covid-data.csv'
 req = Request(url)
 req.add_header('User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:77.0) Gecko/20100101 Firefox/77.0')
 content = urlopen(req)
-df = pd.read_csv(content, usecols=['continent','location','date','icu_patients_per_million','new_cases_smoothed'])
+df = pd.read_csv(content, usecols=['continent','location','date','icu_patients_per_million','total_vaccinations_per_hundred'])
 
 # Filter data by row values.
 df = df[df['continent'] == 'Europe']
@@ -62,22 +62,22 @@ for country in df.location.unique():
   # Skip administrative areas as they are not countries.
   if country == 'Isle of Man' or country == 'Faeroe Islands' or country == 'Guernsey' or country == 'Jersey' or country == 'Gibraltar':
     continue
-  previous_value_new_cases_smoothed = 0
+  previous_value_total_vaccinations_per_hundred = 0
   previous_value_icu_patients_per_million = 0
-  data[country_data_name] = {'Province_State':country_data_name, 'date':[], 'new_cases_smoothed':[], 'icu_patients_per_million':[]}
+  data[country_data_name] = {'Province_State':country_data_name, 'date':[], 'total_vaccinations_per_hundred':[], 'icu_patients_per_million':[]}
   for index, values in (df[df['location'] == country]).iterrows():
     # If the value is not zero, fill the data.
     data[country_data_name]['date'].append(values.date)
-    if values.new_cases_smoothed != 0:
-      previous_value_new_cases_smoothed = values.new_cases_smoothed
+    if values.total_vaccinations_per_hundred != 0:
+      previous_value_total_vaccinations_per_hundred = values.total_vaccinations_per_hundred
       # Data format to be like following
       # data[Finland][2020-12-31] = 3.1
       # data[Finland][2021-01-01] = 3.1
       # data[Finland][2021-01-02] = 3.3
-      data[country_data_name]['new_cases_smoothed'].append(values.new_cases_smoothed)
+      data[country_data_name]['total_vaccinations_per_hundred'].append(values.total_vaccinations_per_hundred)
     # If the value is zero, fill the data with the previous value.
     else:
-      data[country_data_name]['new_cases_smoothed'].append(previous_value_new_cases_smoothed)
+      data[country_data_name]['total_vaccinations_per_hundred'].append(previous_value_total_vaccinations_per_hundred)
     if values.icu_patients_per_million != 0:
       previous_value_icu_patients_per_million = values.icu_patients_per_million
       data[country_data_name]['icu_patients_per_million'].append(values.icu_patients_per_million)
@@ -103,22 +103,22 @@ erno_countries = ['Albania','Bosnia and Herzegovina','Bulgaria','Croatia','Hunga
 data = {}
 df = df[df['date'] > '2020-02-24']
 for erno_country in erno_countries:
-  previous_value_new_cases_smoothed = 0
+  previous_value_total_vaccinations_per_hundred = 0
   previous_value_icu_patients_per_million = 0
-  data[erno_country] = {'Province_State':erno_country, 'date':[], 'new_cases_smoothed':[], 'icu_patients_per_million':[]}
+  data[erno_country] = {'Province_State':erno_country, 'date':[], 'total_vaccinations_per_hundred':[], 'icu_patients_per_million':[]}
   for index, values in (df[df['location'] == erno_country]).iterrows():
     data[erno_country]['date'].append(values.date)
     # If the value is not zero, fill the data.
-    if values.new_cases_smoothed != 0:
-      previous_value_new_cases_smoothed = values.new_cases_smoothed
+    if values.total_vaccinations_per_hundred != 0:
+      previous_value_total_vaccinations_per_hundred = values.total_vaccinations_per_hundred
       # Data format to be like following
       # data[Finland][2020-12-31] = 3.1
       # data[Finland][2021-01-01] = 3.1
       # data[Finland][2021-01-02] = 3.3
-      data[erno_country]['new_cases_smoothed'].append(values.new_cases_smoothed)
+      data[erno_country]['total_vaccinations_per_hundred'].append(values.total_vaccinations_per_hundred)
     # If the value is zero, fill the data with the previous value.
     else:
-      data[erno_country]['new_cases_smoothed'].append(previous_value_new_cases_smoothed)
+      data[erno_country]['total_vaccinations_per_hundred'].append(previous_value_total_vaccinations_per_hundred)
     if values.icu_patients_per_million != 0:
       previous_value_icu_patients_per_million = values.icu_patients_per_million
       data[erno_country]['icu_patients_per_million'].append(values.icu_patients_per_million)
