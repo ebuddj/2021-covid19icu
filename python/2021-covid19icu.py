@@ -37,7 +37,7 @@ import numpy as np
 
 # Read the file and filter columns.
 # https://stackoverflow.com/questions/62278538/pd-read-csv-produces-httperror-http-error-403-forbidden/62278737#62278737
-url ='https://covid.ourworldindata.org/data/owid-covid-data.csv'
+url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 req = Request(url)
 req.add_header('User-Agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:77.0) Gecko/20100101 Firefox/77.0')
 content = urlopen(req)
