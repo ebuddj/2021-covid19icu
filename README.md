@@ -2,7 +2,7 @@
 
 **Live demo** https://ebuddj.github.io/2021-covid19icu/
 
-## Covid-19 actions versus ICU patients (EBU)
+## Covid-19 vaccinations versus ICU patients (EBU)
 
 The graph shows the ICU patients due Covid-19 and administered vaccine doses for European countries. ICU stands for intensive care unit. The definition of unitensive care unit may differ from country to country. The vaccine data is counted as a single dose, and may not equal the total number of people vaccinated, depending on the specific dose regime (e.g. people receive multiple doses).The data comes from Our World in Data. 
 
